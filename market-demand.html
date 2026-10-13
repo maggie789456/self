@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>市场需求 - 麦杞岐对接服务站</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+body { background: #f5f5f5; }
+.market-header {
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 3px solid #ff6a00;
+}
+.market-header h1 { font-size: 28px; margin: 0 0 8px; }
+.market-header .subtitle { font-size: 14px; color: #ccc; }
+.market-notice {
+    background: #fff3e0;
+    border: 1px solid #ff6a00;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin: 15px auto;
+    max-width: 1400px;
+    font-size: 14px;
+    color: #e65100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.market-notice .icon { font-size: 20px; }
+.market-notice .tip { color: #8a4b00; font-size: 13px; }
+.market-disclaimer {
+    background: #fff;
+    border-left: 3px solid #ff6a00;
+    padding: 8px 16px;
+    margin: 10px auto;
+    max-width: 1400px;
+    font-size: 12px;
+    color: #999;
+}
+/* 大板块Tab切换 */
+.demand-tabs {
+    display: flex;
+    gap: 12px;
+    max-width: 1400px;
+    margin: 0 auto 14px;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+.demand-tab {
+    flex: 1;
+    padding: 14px 24px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.2s;
+    border: 2px solid #e0e0e0;
+    background: #fff;
+    color: #333;
+}
+.demand-tab.active {
+    background: #ff6a00;
+    color: #fff;
+    border-color: #ff6a00;
+}
+.demand-tab:hover:not(.active) {
+    border-color: #ff6a00;
+    color: #ff6a00;
+}
+/* 搜索栏 */
+.search-bar {
+    max-width: 1400px;
+    margin: 0 auto 16px;
+    padding: 0 16px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.search-bar .search-input-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 240px;
+}
+.search-bar input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 44px 12px 40px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+.search-bar input[type="text"]:focus { border-color: #ff6a00; }
+.search-bar .search-glass {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #999;
+}
+.search-bar .clear-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: #f0f0f0;
+    color: #777;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    display: none;
+}
+.search-bar .search-count {
+    font-size: 13px;
+    color: #888;
+    white-space: nowrap;
+}
+/* 主内容 */
+.market-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 16px 40px;
+    box-sizing: border-box;
+}
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.image-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.image-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+.image-card .img-wrap {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #f0f0f0;
+    position: relative;
+    cursor: pointer;
+}
+.image-card .img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+    display: block;
+}
+.image-card:hover .img-wrap img { transform: scale(1.05); }
+.image-card .img-wrap .search-icon {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.7);
+    color: #ff6a00;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.image-card:hover .img-wrap .search-icon { opacity: 1; }
+.image-card .img-wrap .zoom-icon {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.image-card:hover .img-wrap .zoom-icon { opacity: 1; }
+.image-card .info { padding: 10px; font-size: 12px; }
+.image-card .info .label {
+    color: #999;
+    font-size: 11px;
+    margin-bottom: 3px;
+}
+.image-card .info .value {
+    color: #333;
+    margin-bottom: 8px;
+    word-break: break-all;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.image-card .info .value .num {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a1a1a;
+    letter-spacing: 0.3px;
+}
+.copy-btn {
+    background: #ff6a00;
+    color: #fff;
+    border: none;
+    padding: 3px 9px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background 0.2s;
+}
+.copy-btn:hover { background: #e55a00; }
+.copy-btn.copied { background: #2e9e4f; }
+.image-card .info .hint {
+    color: #b0b0b0;
+    font-size: 10px;
+    line-height: 1.5;
+}
+/* 弹窗 */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.88);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.modal-overlay.show { display: flex; }
+.modal-overlay .close-btn {
+    position: absolute;
+    top: 16px; right: 24px;
+    color: #fff;
+    font-size: 40px;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10001;
+    user-select: none;
+}
+.modal-overlay .modal-img {
+    max-width: 82%;
+    max-height: 68vh;
+    border-radius: 8px;
+    background: #fff;
+}
+.modal-overlay .modal-info {
+    color: #fff;
+    text-align: center;
+    margin-top: 14px;
+    font-size: 14px;
+    max-width: 90%;
+}
+.modal-overlay .modal-info .big-num {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff6a00;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+}
+.modal-overlay .modal-info .modal-hint {
+    color: #bbb;
+    font-size: 12px;
+    margin-bottom: 12px;
+}
+.modal-overlay .modal-info .copy-btn {
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    margin: 0 4px;
+}
+.modal-overlay .modal-info .search-link {
+    display: inline-block;
+    margin: 0 4px;
+    background: #ff6a00;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    text-decoration: none;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+}
+.modal-overlay .modal-info .search-link:hover { background: #e55a00; }
+.modal-overlay .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 46px;
+    cursor: pointer;
+    padding: 16px;
+    user-select: none;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+}
+.modal-overlay .nav-btn:hover { opacity: 1; color: #ff6a00; }
+.modal-overlay .prev-btn { left: 12px; }
+.modal-overlay .next-btn { right: 12px; }
+.back-home-btn {
+    position: fixed;
+    top: 15px; left: 15px;
+    background: #ff6a00;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.back-home-btn:hover { background: #e55a00; }
+.loading {
+    text-align: center;
+    padding: 50px 20px;
+    color: #999;
+    font-size: 16px;
+}
+@media (max-width: 1100px) {
+    .image-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 768px) {
+    .image-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .market-header h1 { font-size: 22px; }
+    .demand-tab { font-size: 14px; padding: 12px 8px; }
+}
+</style>
+</head>
+<body>
+<a href="index.html" class="back-home-btn">← 返回首页</a>
+
+<div class="market-header">
+    <h1>🔥 市场需求（高优）</h1>
+    <div class="subtitle">maggie.xie · OBM2 男装外套夹克 / 衬衫亨利衫</div>
+</div>
+
+<div class="market-notice">
+    <span class="icon">⚠️</span>
+    <span>有类似款请复制<strong>图片编号</strong>发给<strong>麦杞岐</strong>操作</span>
+    <span class="tip">（点击复制，发给麦杞岐操作）</span>
+</div>
+
+<div class="market-disclaimer">
+    声明：以上款式仅供参考，不可直接复制或侵权。本网页不负任何法律责任，所有资源来源于互联网。
+</div>
+
+<!-- 大板块切换：外套夹克 / 衬衫 -->
+<div class="demand-tabs">
+    <div class="demand-tab active" data-tab="jacket" onclick="switchTab('jacket')">🧥 外套夹克 <span id="tab-count-jacket"></span></div>
+    <div class="demand-tab" data-tab="shirt" onclick="switchTab('shirt')">👕 衬衫 <span id="tab-count-shirt"></span></div>
+</div>
+
+<!-- 搜索栏 -->
+<div class="search-bar">
+    <div class="search-input-wrap">
+        <span class="search-glass">🔍</span>
+        <input type="text" id="search-input" placeholder="输入图片编号搜索，例如 22797051" oninput="onSearchInput()">
+        <button class="clear-btn" id="clear-btn" onclick="clearSearch()">✕</button>
+    </div>
+    <span class="search-count" id="search-count"></span>
+</div>
+
+<!-- 图片网格 -->
+<div class="market-content">
+    <div id="grid-container">
+        <div class="loading">正在加载图片...</div>
+    </div>
+</div>
+
+<!-- 图片放大弹窗 -->
+<div class="modal-overlay" id="img-modal">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <span class="nav-btn prev-btn" onclick="navModal(-1)">&#8249;</span>
+    <span class="nav-btn next-btn" onclick="navModal(1)">&#8250;</span>
+    <img class="modal-img" id="modal-img" src="" alt="商品图片">
+    <div class="modal-info" id="modal-info"></div>
+</div>
+
+<script src="assets/js/demand-images.js"></script>
+<script>
+var DEMAND_CONFIG = {
+    jacket: { name: '外套夹克', dir: 'assets/images/demand/jacket/' },
+    shirt:  { name: '衬衫',     dir: 'assets/images/demand/shirt/' }
+};
+
+var currentTab = 'jacket';
+var currentIds = [];
+var filteredIds = [];
+var currentModalIdx = -1;
+
+function allData() {
+    if (typeof window.DEMAND_IMAGES === 'undefined' || !window.DEMAND_IMAGES) return null;
+    return window.DEMAND_IMAGES;
+}
+
+function escapeHtml(text) {
+    if (text === null || text === undefined) return '';
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(String(text)));
+    return div.innerHTML;
+}
+
+function imgPath(cat, id) {
+    return DEMAND_CONFIG[cat].dir + id + '.png';
+}
+
+function init() {
+    var data = allData();
+    if (!data) {
+        document.getElementById('grid-container').innerHTML =
+            '<div class="loading" style="color:#d93025;">图片编号清单加载失败，请确认编号清单文件存在。</div>';
+        return;
+    }
+    document.getElementById('tab-count-jacket').textContent = '(' + (data.jacket ? data.jacket.length : 0) + ')';
+    document.getElementById('tab-count-shirt').textContent = '(' + (data.shirt ? data.shirt.length : 0) + ')';
+    switchTab('jacket');
+}
+
+function switchTab(tab) {
+    currentTab = tab;
+    document.querySelectorAll('.demand-tab').forEach(function(t) {
+        t.classList.toggle('active', t.dataset.tab === tab);
+    });
+    document.getElementById('search-input').value = '';
+    document.getElementById('clear-btn').style.display = 'none';
+    var data = allData();
+    currentIds = (data && data[tab]) ? data[tab].slice() : [];
+    filteredIds = currentIds.slice();
+    renderGrid();
+}
+
+function onSearchInput() {
+    var kw = document.getElementById('search-input').value.trim();
+    document.getElementById('clear-btn').style.display = kw ? 'block' : 'none';
+    if (!kw) {
+        filteredIds = currentIds.slice();
+    } else {
+        filteredIds = currentIds.filter(function(id) { return String(id).indexOf(kw) !== -1; });
+    }
+    renderGrid();
+}
+
+function clearSearch() {
+    document.getElementById('search-input').value = '';
+    document.getElementById('clear-btn').style.display = 'none';
+    filteredIds = currentIds.slice();
+    renderGrid();
+    document.getElementById('search-input').focus();
+}
+
+function renderGrid() {
+    var container = document.getElementById('grid-container');
+    var countEl = document.getElementById('search-count');
+    var total = currentIds.length;
+
+    if (filteredIds.length === 0) {
+        container.innerHTML = '<div class="loading">没有找到匹配的图片编号</div>';
+        countEl.textContent = total > 0 ? ('共 ' + total + ' 张，匹配 0 张') : '';
+        return;
+    }
+
+    countEl.textContent = (filteredIds.length === total)
+        ? ('共 ' + total + ' 张图片')
+        : ('共 ' + total + ' 张，匹配 ' + filteredIds.length + ' 张');
+
+    var html = '<div class="image-grid">';
+    filteredIds.forEach(function(id, idx) {
+        var path = imgPath(currentTab, id);
+        html += '<div class="image-card">';
+        html += '<div class="img-wrap" onclick="openModal(' + idx + ')">';
+        html += '<img src="' + escapeHtml(path) + '" alt="' + escapeHtml(id) + '" loading="lazy" onerror="this.parentElement.innerHTML=\'<div style=&quot;display:flex;align-items:center;justify-content:center;width:100%;height:100%;color:#ccc;font-size:12px;text-align:center;padding:10px;&quot;>图片加载失败</div>\'">';
+        html += '<div class="zoom-icon">⤢</div>';
+        html += '<div class="search-icon" title="搜索同款" onclick="event.stopPropagation();searchSameByIdx(' + idx + ')">🔍</div>';
+        html += '</div>';
+        html += '<div class="info">';
+        html += '<div class="label">图片编号</div>';
+        html += '<div class="value"><span class="num" title="' + escapeHtml(id) + '">' + escapeHtml(id) + '</span>';
+        html += '<button class="copy-btn" onclick="copyNumber(\'' + escapeHtml(id) + '\', this)">复制</button>';
+        html += '</div>';
+        html += '<div class="hint">点击复制，发给麦杞岐操作</div>';
+        html += '</div>';
+        html += '</div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+}
+
+function copyText(text, btn) {
+    var done = function() {
+        if (!btn) return;
+        var orig = btn.dataset.orig || btn.textContent;
+        btn.dataset.orig = orig;
+        btn.textContent = '已复制 ✓';
+        btn.classList.add('copied');
+        setTimeout(function() {
+            btn.textContent = orig;
+            btn.classList.remove('copied');
+        }, 1500);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(String(text)).then(done).catch(function() {
+            fallbackCopy(String(text), done);
+        });
+    } else {
+        fallbackCopy(String(text), done);
+    }
+}
+
+function fallbackCopy(text, done) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); done(); } catch (e) { alert('复制失败，请手动复制：' + text); }
+    document.body.removeChild(ta);
+}
+
+function copyNumber(id, btn) {
+    copyText(id, btn);
+}
+
+function openModal(idx) {
+    currentModalIdx = idx;
+    showModalImage();
+}
+
+function showModalImage() {
+    var id = filteredIds[currentModalIdx];
+    if (!id) return;
+    var modal = document.getElementById('img-modal');
+    var img = document.getElementById('modal-img');
+    var info = document.getElementById('modal-info');
+
+    img.src = imgPath(currentTab, id);
+    img.alt = id;
+
+    var html = '<div class="big-num">' + escapeHtml(id) + '</div>';
+    html += '<div class="modal-hint">点击复制，发给麦杞岐操作 · 第 ' + (currentModalIdx + 1) + ' / ' + filteredIds.length + ' 张</div>';
+    html += '<button class="copy-btn" onclick="copyText(\'' + escapeHtml(id) + '\', this)">📋 复制图片编号</button>';
+    html += '<button class="search-link" onclick="searchSameByIdx(' + currentModalIdx + ')">🔍 搜索图片同款</button>';
+    info.innerHTML = html;
+
+    modal.classList.add('show');
+}
+
+function closeModal() {
+    document.getElementById('img-modal').classList.remove('show');
+}
+
+function navModal(dir) {
+    if (filteredIds.length === 0) return;
+    currentModalIdx += dir;
+    if (currentModalIdx < 0) currentModalIdx = filteredIds.length - 1;
+    if (currentModalIdx >= filteredIds.length) currentModalIdx = 0;
+    showModalImage();
+}
+
+function searchSameByIdx(idx) {
+    var id = filteredIds[idx];
+    if (!id) return;
+    var path = imgPath(currentTab, id);
+    if (location.protocol === 'http:' || location.protocol === 'https:') {
+        var absUrl;
+        try { absUrl = new URL(path, location.href).href; } catch (e) { absUrl = path; }
+        window.open('https://lens.google.com/uploadbyurl?url=' + encodeURIComponent(absUrl), '_blank');
+    } else {
+        alert('当前为本地预览模式，图片尚未公开，无法直接搜索同款。\n部署到网站后可直接搜索；也可先复制编号发给麦杞岐。');
+        window.open('https://lens.google.com/', '_blank');
+    }
+}
+
+document.addEventListener('keydown', function(e) {
+    if (!document.getElementById('img-modal').classList.contains('show')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') navModal(-1);
+    if (e.key === 'ArrowRight') navModal(1);
+});
+
+document.getElementById('img-modal').addEventListener('click', function(e) {
+    if (e.target.id === 'img-modal') closeModal();
+});
+
+init();
+</script>
+
+<footer class="site-footer">
+    <div class="footer-content">
+        <p>本网页所有功能只提供建议，不负任何法律责任，所有资源来源于互联网。</p>
+        <p>如有功能更新需求请联系 <strong>麦杞岐（maggie.xie）</strong></p>
+    </div>
+</footer>
+</body>
+</html>

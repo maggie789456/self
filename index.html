@@ -3,528 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>待回品展示 - 麦杞岐对接服务站</title>
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-    background: #f5f5f5;
-    color: #333;
-}
-header {
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-    color: #fff;
-    padding: 30px 20px;
-    text-align: center;
-    border-bottom: 3px solid #ff6a00;
-}
-header h1 { font-size: 28px; margin: 0 0 8px; font-weight: 700; }
-header .subtitle { font-size: 14px; color: #ccc; }
-.notice {
-    background: #fff3e0;
-    border: 1px solid #ff6a00;
-    border-radius: 8px;
-    padding: 12px 20px;
-    margin: 15px auto;
-    max-width: 1400px;
-    font-size: 14px;
-    color: #e65100;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.notice .icon { font-size: 20px; }
-.disclaimer {
-    background: #fff;
-    border-left: 3px solid #ff6a00;
-    padding: 8px 16px;
-    margin: 10px auto;
-    max-width: 1400px;
-    font-size: 12px;
-    color: #999;
-}
-.tabs {
-    display: flex;
-    gap: 12px;
-    max-width: 1400px;
-    margin: 0 auto 20px;
-}
-.tab {
-    flex: 1;
-    padding: 14px 24px;
-    text-align: center;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: all 0.2s;
-    border: 2px solid #e0e0e0;
-    background: #fff;
-    color: #333;
-}
-.tab.active { background: #ff6a00; color: #fff; border-color: #ff6a00; }
-.tab:hover:not(.active) { border-color: #ff6a00; color: #ff6a00; }
-.panel { display: none; max-width: 1400px; margin: 0 auto; }
-.panel.show { display: block; }
-.current-filter {
-    background: #fff;
-    border-radius: 8px;
-    padding: 10px 16px;
-    margin-bottom: 12px;
-    font-size: 13px;
-    color: #666;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-}
-.current-filter .chip {
-    background: #fff3e0;
-    color: #e65100;
-    border: 1px solid #ff6a00;
-    border-radius: 14px;
-    padding: 2px 10px;
-    font-size: 12px;
-    cursor: pointer;
-}
-.current-filter .chip:hover { background: #ff6a00; color: #fff; }
-.current-filter .clear { color: #ff6a00; cursor: pointer; font-weight: 600; }
-.section-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: #1a1a1a;
-    padding: 14px 20px;
-    background: linear-gradient(90deg, #fff3e0, transparent);
-    border-left: 4px solid #ff6a00;
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-.section-title .badge {
-    background: #ff6a00;
-    color: #fff;
-    font-size: 12px;
-    padding: 2px 10px;
-    border-radius: 10px;
-}
-.sub-heading {
-    font-size: 16px;
-    font-weight: 600;
-    color: #555;
-    padding: 8px 4px;
-    margin: 12px 0 8px;
-    border-bottom: 2px solid #ff6a00;
-    display: inline-block;
-}
-.grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
-    margin-bottom: 30px;
-}
-@media (max-width: 1200px) { .grid { grid-template-columns: repeat(4,1fr); } }
-@media (max-width: 900px)  { .grid { grid-template-columns: repeat(3,1fr); } }
-@media (max-width: 600px)  { .grid { grid-template-columns: repeat(2,1fr); } }
-.card {
-    background: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
-}
-.card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-.card .img-wrap {
-    width: 100%;
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    background: #f0f0f0;
-    position: relative;
-}
-.card .img-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s;
-}
-.card:hover .img-wrap img { transform: scale(1.05); }
-.card .img-wrap .no-img {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #ccc;
-    font-size: 12px;
-    text-align: center;
-    padding: 10px;
-}
-.card .img-wrap .zoom {
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    background: rgba(0,0,0,0.7);
-    color: #ff6a00;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-.card:hover .img-wrap .zoom { opacity: 1; }
-.card .info { padding: 10px; font-size: 12px; }
-.card .info .label { color: #999; font-size: 11px; margin-bottom: 2px; }
-.card .info .value { color: #333; margin-bottom: 6px; word-break: break-all; display: flex; align-items: center; gap: 4px; }
-.card .info .copy-btn {
-    background: #ff6a00;
-    color: #fff;
-    border: none;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 10px;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-.card .info .copy-btn:hover { background: #e55a00; }
-.card .info .time-value { color: #ff6a00; font-weight: 500; }
-.loading { text-align: center; color: #999; padding: 60px 0; font-size: 14px; }
-.empty { text-align: center; color: #999; padding: 60px 0; font-size: 14px; }
-.footer {
-    text-align: center;
-    padding: 30px 20px;
-    color: #999;
-    font-size: 12px;
-    border-top: 1px solid #e0e0e0;
-    margin-top: 30px;
-}
-/* 弹窗 */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.85);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-.modal.show { display: flex; }
-.modal-content {
-    background: #1a1a1a;
-    border-radius: 12px;
-    max-width: 90%;
-    max-height: 90vh;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-.modal-img-wrap {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #000;
-    overflow: hidden;
-    padding: 10px;
-}
-.modal-img-wrap img {
-    max-width: 100%;
-    max-height: 70vh;
-    object-fit: contain;
-    border-radius: 6px;
-}
-.modal-info {
-    padding: 14px 18px;
-    background: #1a1a1a;
-    color: #ccc;
-    font-size: 13px;
-    line-height: 1.9;
-    border-top: 1px solid #333;
-}
-.modal-info .row { display: flex; align-items: center; gap: 6px; }
-.modal-info b { color: #ff6a00; }
-.modal-info a.search-link {
-    color: #ff6a00;
-    text-decoration: none;
-    font-weight: 600;
-}
-.modal-info a.search-link:hover { text-decoration: underline; }
-.modal-close {
-    position: absolute;
-    top: 10px; right: 14px;
-    color: #fff;
-    font-size: 26px;
-    cursor: pointer;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    width: 36px; height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-}
-.modal-close:hover { background: rgba(255,106,0,0.8); }
-.modal-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 32px;
-    cursor: pointer;
-    background: rgba(255,255,255,0.12);
-    border-radius: 50%;
-    width: 46px; height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    user-select: none;
-    z-index: 10;
-}
-.modal-nav:hover { background: rgba(255,106,0,0.85); }
-.modal-nav.prev { left: 12px; }
-.modal-nav.next { right: 12px; }
-.modal-count { color: #999; font-size: 11px; }
-</style>
+<title>麦杞岐对接服务站 | 男装外套夹克 · 衬衫亨利衫</title>
+<link rel="stylesheet" href="assets/css/style.css">
+<!-- PDF.js 库：用于在浏览器中渲染PDF，避免iframe无法显示PDF及自动下载问题 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+</script>
 </head>
 <body>
 
-<header>
-    <h1>待回品展示</h1>
-    <div class="subtitle">全球国家 · 外套夹克 · 衬衫 · 麦杞岐对接服务站</div>
+<!-- 顶部导航 -->
+<header class="top-bar">
+  <div class="logo">
+    <div class="logo-icon">M</div>
+    <div class="logo-text">
+      <strong>麦杞岐对接服务站</strong>
+      <span>maggie.xie · OBM2 男装外套夹克 / 衬衫亨利衫</span>
+    </div>
+  </div>
+  <button class="nav-toggle" onclick="document.querySelector('.sidebar').classList.toggle('open')">☰</button>
 </header>
 
-<div class="notice">
-    <span class="icon">📌</span>
-    <span>以下为按类目整理的待回品明细，点击商品卡片可查看大图并复制款式编号。</span>
-</div>
+<!-- 侧边导航 -->
+<nav class="sidebar">
+  <ul class="sidebar-nav">
+    <li><a class="active" data-target="sec-category"><span class="nav-icon">📋</span> 类目指引</a></li>
+    <li><a data-target="sec-visual"><span class="nav-icon">🖼️</span> 视觉优化</a></li>
+    <li><a data-target="sec-title"><span class="nav-icon">📝</span> 标题优化</a></li>
+    <li><a data-target="sec-demand"><span class="nav-icon">🔥</span> 市场需求<span style="background:var(--primary);color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:6px;">高优</span></a><span class="nav-update-tag">最近更新</span></li>
+    <li><a data-target="sec-plan"><span class="nav-icon">📚</span> 企划需求</a></li>
+    <li><a data-target="sec-top"><span class="nav-icon">🔥</span> 去年热销</a></li>
+    <li><a data-target="sec-sept-top"><span class="nav-icon">🔥</span> 9月Top热销<span style="background:#d93025;color:#fff;font-size:9px;padding:1px 5px;border-radius:8px;margin-left:4px;animation:newBlink 1.5s infinite;">New</span></a><span class="nav-update-tag">最近更新</span></li>
+    <li><a data-target="sec-info"><span class="nav-icon">📢</span> 近期资讯</a></li>
+    <li><a data-target="sec-latest"><span class="nav-icon">🆕</span> 最新款式资讯<span style="background:#d93025;color:#fff;font-size:9px;padding:1px 5px;border-radius:8px;margin-left:4px;animation:newBlink 1.5s infinite;">New</span></a><span class="nav-update-tag">最近更新</span></li>
+  </ul>
+</nav>
 
-<div class="disclaimer">
-    ⚠️ 本页商品图片及信息来源于业务数据，仅供内部参考使用，请勿用于任何商业用途或对外传播。
-</div>
+<!-- 主内容 -->
+<main class="main-content">
 
-<div class="tabs" id="tabs">
-    <div class="tab active" data-tab="jacket">🧥 外套夹克</div>
-    <div class="tab" data-tab="shirt">👔 衬衫</div>
-</div>
-
-<div class="panel show" id="panel-jacket">
-    <div class="current-filter">
-        展示：
-        <span class="chip" data-cat="外套夹克">外套夹克</span>
-        <span class="clear" onclick="resetFilter()">清除筛选</span>
+  <!-- ==================== 模块1：类目指引 ==================== -->
+  <section class="section" id="sec-category">
+    <div class="section-header">
+      <h2><span class="sec-icon">📋</span> 类目指引</h2>
+      <p>点击类目查看详细分类与路径 · 更新类目指引.xlsx即可同步</p>
     </div>
-    <div id="jacket-content"><div class="loading">正在加载数据...</div></div>
-</div>
-
-<div class="panel" id="panel-shirt">
-    <div class="current-filter">
-        展示：
-        <span class="chip" data-cat="衬衫">衬衫</span>
-        <span class="clear" onclick="resetFilter()">清除筛选</span>
+    <div id="category-container" class="cat-grid">
+      <div style="text-align:center;padding:40px;color:var(--muted);">加载中...</div>
     </div>
-    <div id="shirt-content"><div class="loading">正在加载数据...</div></div>
-</div>
+  </section>
 
-<div class="footer">
-    数据更新：请用最新待回品文件替换 data/market_demand.json · 仅供参考
-</div>
-
-<!-- 大图弹窗 -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <div class="modal-close" onclick="closeModal()">×</div>
-        <div class="modal-nav prev" onclick="navModal(-1)">‹</div>
-        <div class="modal-nav next" onclick="navModal(1)">›</div>
-        <div class="modal-img-wrap" id="modal-img-wrap"></div>
-        <div class="modal-info" id="modal-info"></div>
+  <!-- ==================== 模块2：视觉优化 ==================== -->
+  <section class="section" id="sec-visual">
+    <div class="section-header">
+      <h2><span class="sec-icon">🖼️</span> 视觉优化</h2>
+      <p>市场视觉需求 · AI指令快速生成</p>
     </div>
-</div>
+    <div class="vis-btn-group">
+      <div class="vis-btn-card" onclick="showVisPdf()">
+        <div class="vis-icon">📊</div>
+        <div class="vis-text-wrap">
+          <div class="vis-title">市场视觉需求</div>
+          <div class="vis-desc">查看市场视觉需求PDF文档</div>
+        </div>
+      </div>
+      <a href="image-optimization.html" style="text-decoration:none;">
+        <div class="vis-btn-card">
+          <div class="vis-icon">✨</div>
+          <div class="vis-text-wrap">
+            <div class="vis-title">AI指令快速生成</div>
+            <div class="vis-desc">一键生成AI图片优化提示词</div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div id="vis-pdf-area" class="hidden">
+      <div class="card" style="padding:20px;">
+        <h3 style="margin-bottom:12px;color:var(--primary);">📄 市场视觉需求文档</h3>
+        <a class="pdf-download-btn" href="assets/pdf/market-visual-demand.pdf" download style="display:inline-flex;align-items:center;gap:6px;margin-bottom:10px;padding:8px 18px;font-size:14px;color:#fff;background:var(--primary);border:none;border-radius:6px;cursor:pointer;text-decoration:none;">⬇️ 下载PDF</a>
+        <div id="vis-pdf-canvas-container" class="pdf-canvas-container" data-pdf="assets/pdf/market-visual-demand.pdf" style="width:100%;background:#525659;border-radius:10px;box-shadow:var(--shadow);min-height:300px;overflow:hidden;position:relative;"><div class="pdf-loading" style="display:flex;align-items:center;justify-content:center;height:300px;color:#ccc;font-size:15px;">📄 点击查看PDF</div></div>
+      </div>
+    </div>
+  </section>
 
-<script>
-let allData = [];
-let currentIdx = -1;
+  <!-- ==================== 模块3：标题优化 ==================== -->
+  <section class="section" id="sec-title">
+    <div class="section-header">
+      <h2><span class="sec-icon">📝</span> 标题优化</h2>
+      <p>选择品类 → 按维度选词 → 自动生成中英文标题</p>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">点击下方按钮进入标题优化工具页面：</p>
+    <a href="title-optimization.html" class="btn btn-primary btn-large">📝 进入标题优化工具 →</a>
+    <div style="margin-top:20px;padding:16px;background:var(--primary-light);border-radius:8px;font-size:13px;color:var(--primary-hover);line-height:1.8;">
+      <b>💡 使用说明：</b><br>
+      1. 选择品类（衬衫 / 外套夹克）<br>
+      2. 按照各个维度依次选词（品类、图案、领型、场景、袖长、风格等）<br>
+      3. 系统自动集合生成中英文标题<br>
+      4. <b style="color:var(--red);">⚠️ 生成标题不可以直接使用，请检查后使用</b>
+    </div>
+  </section>
 
-function escapeHtml(text) {
-    if (!text) return '';
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-}
+  <!-- ==================== 模块4：市场需求 ==================== -->
+  <section class="section" id="sec-demand">
+    <div class="section-header">
+      <h2><span class="sec-icon">🔥</span> 市场需求（高优）</h2>
+      <p>外套夹克 / 衬衫 · 图片编号参考</p>
+    </div>
+    <div class="demand-notice">
+      <b>📌 有类似款请复制【图片编号】发给麦杞岐操作</b><br>
+      点击复制，发给麦杞岐操作 · 支持按编号搜索、点击图片放大查看并搜索同款
+    </div>
+    <div class="demand-disclaimer">
+      <b>⚠️ 免责声明：</b>本页面展示的图片仅为款式参考，不可直接复制或侵权使用。所有图片版权归原品牌所有，本页面不承担任何因侵权产生的法律责任。商家应确保所提报的商品具有合法来源和授权。
+    </div>
+    <div style="margin-bottom:16px;">
+      <a href="market-demand.html" class="btn btn-primary btn-large">🔍 进入市场需求图片区 →</a>
+    </div>
+  </section>
 
-function copyText(text, btn) {
-    navigator.clipboard.writeText(text).then(() => {
-        const orig = btn.textContent;
-        btn.textContent = '已复制✓';
-        setTimeout(() => { btn.textContent = orig; }, 1200);
-    });
-}
+  <!-- ==================== 模块5：企划需求 ==================== -->
+  <section class="section" id="sec-plan">
+    <div class="section-header">
+      <h2><span class="sec-icon">📚</span> 企划需求</h2>
+      <p>外套夹克 / 衬衫亨利衫 · 企划款式参考PDF展示</p>
+    </div>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">点击进入企划款式参考页面，查看各风格款式PDF：</p>
+    <a href="plan-demand.html" class="btn btn-primary btn-large">📚 进入企划需求展示 →</a>
+  </section>
 
-async function loadData() {
-    try {
-        const resp = await fetch('data/market_demand.json');
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        allData = await resp.json();
-        renderPanel('jacket-content', '外套夹克');
-        renderPanel('shirt-content', '衬衫');
-    } catch(e) {
-        document.getElementById('jacket-content').innerHTML =
-            '<div class="empty">数据加载失败，请确保 data/market_demand.json 文件存在</div>';
-        document.getElementById('shirt-content').innerHTML =
-            '<div class="empty">数据加载失败，请确保 data/market_demand.json 文件存在</div>';
-    }
-}
+  <!-- ==================== 模块6：去年热销 ==================== -->
+  <section class="section" id="sec-top">
+    <div class="section-header">
+      <h2><span class="sec-icon">🔥</span> 去年热销</h2>
+      <p>去年10月各区域热销商品参考，点击图片可放大查看并搜索同款</p>
+    </div>
+    <a href="top-products.html" class="btn btn-primary btn-large">🔥 进入去年热销展示 →</a>
+  </section>
 
-function switchTab(tab) {
-    document.querySelectorAll('.tab').forEach(function(t) {
-        t.classList.toggle('active', t.dataset.tab === tab);
-    });
-    document.getElementById('panel-jacket').classList.toggle('show', tab === 'jacket');
-    document.getElementById('panel-shirt').classList.toggle('show', tab === 'shirt');
-    if (tab === 'jacket') resetFilter();
-}
+  <!-- ==================== 模块7：9月Top热销 ==================== -->
+  <section class="section" id="sec-sept-top">
+    <div class="section-header">
+      <h2><span class="sec-icon">🔥</span> 9月Top热销 <span style="background:#d93025;color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;animation:newBlink 1.5s infinite;">New</span></h2>
+      <p>2026年9月各品类热销商品参考 · 按外套夹克/衬衫/亨利衫分类展示</p>
+    </div>
+    <a href="sept-topsale.html" class="btn btn-primary btn-large">🔥 进入9月Top热销展示 →</a>
+  </section>
 
-function resetFilter() {
-    document.querySelectorAll('.chip').forEach(function(c) { c.classList.remove('dimmed'); });
-}
+  <!-- ==================== 模块8：近期资讯 ==================== -->
+  <section class="section" id="sec-info">
+    <div class="section-header">
+      <h2><span class="sec-icon">📢</span> 近期资讯</h2>
+      <p>国家站点热搜词 · 近期通知 · 修改txt文件即可更新</p>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>🔍 国家站点热搜词</h3>
+        <div class="info-content" id="hot-words">加载中...</div>
+      </div>
+      <div class="info-card">
+        <h3>📣 近期通知</h3>
+        <div class="info-content" id="notices">加载中...</div>
+      </div>
+    </div>
+  </section>
 
-function renderPanel(containerId, categoryKey) {
-    var container = document.getElementById(containerId);
-    var panelData = allData.filter(function(d) { return d.category === categoryKey; });
+  <!-- ==================== 模块8：最新款式资讯 ==================== -->
+  <section class="section" id="sec-latest">
+    <div class="section-header">
+      <h2><span class="sec-icon">🆕</span> 最新款式资讯 <span style="background:#d93025;color:#fff;font-size:11px;padding:2px 8px;border-radius:10px;animation:newBlink 1.5s infinite;">New</span></h2>
+      <p>点击标题查看PDF详情 · 持续更新中</p>
+    </div>
+    <div class="latest-info-list" id="latest-info-list">
+      <div class="latest-info-item" onclick="showLatestPdf('assets/pdf/sept-pattern-expansion.pdf', this)">
+        <div class="latest-item-icon">📄</div>
+        <div class="latest-item-content">
+          <div class="latest-item-title">9月图案胚衣拓展</div>
+          <div class="latest-item-date">2025年9月</div>
+        </div>
+        <div class="latest-item-arrow">▶</div>
+      </div>
+      <div class="latest-info-item" onclick="showLatestPdf('assets/pdf/christmas-elements.pdf', this)">
+        <div class="latest-item-icon">📄</div>
+        <div class="latest-item-content">
+          <div class="latest-item-title">男装圣诞节主要元素</div>
+          <div class="latest-item-date">2025年9月</div>
+        </div>
+        <div class="latest-item-arrow">▶</div>
+      </div>
+    </div>
+    <div id="latest-pdf-area" class="hidden" style="margin-top:20px;">
+      <div class="card" style="padding:20px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+          <h3 id="latest-pdf-title" style="color:var(--primary);">📄 资讯详情</h3>
+          <a id="latest-pdf-download" class="pdf-download-btn" download style="display:inline-flex;align-items:center;gap:6px;padding:8px 18px;font-size:14px;color:#fff;background:var(--primary);border:none;border-radius:6px;cursor:pointer;text-decoration:none;">⬇️ 下载PDF</a>
+        </div>
+        <div id="latest-pdf-canvas-container" class="pdf-canvas-container" data-pdf="" style="width:100%;background:#525659;border-radius:10px;box-shadow:var(--shadow);min-height:300px;overflow:hidden;position:relative;"><div class="pdf-loading" style="display:flex;align-items:center;justify-content:center;height:300px;color:#ccc;font-size:15px;">📄 点击标题查看PDF</div></div>
+      </div>
+    </div>
+  </section>
 
-    if (panelData.length === 0) {
-        container.innerHTML = '<div class="empty">暂无' + categoryKey + '数据</div>';
-        return;
-    }
+</main>
 
-    // 按叶子类目分组
-    var groups = {};
-    panelData.forEach(function(item) {
-        var key = item.leafCategory || '未分类';
-        if (!groups[key]) groups[key] = [];
-        groups[key].push(item);
-    });
-    var leafKeys = Object.keys(groups).sort(function(a,b){ return a.localeCompare(b, 'zh'); });
+<script src="assets/js/app.js"></script>
 
-    var html = '';
-    leafKeys.forEach(function(leaf) {
-        var items = groups[leaf];
-        html += '<div class="section-title">' + escapeHtml(leaf) +
-                ' <span class="badge">' + items.length + '款</span></div>';
-        html += '<div class="grid">';
-        items.forEach(function(item) {
-            var idx = allData.indexOf(item);
-            var firstImg = (item.images && item.images.length > 0) ? item.images[0] : '';
-            var hasImg = !!firstImg;
-            html += '<div class="card" onclick="openModal(' + idx + ')">';
-            html += '<div class="img-wrap">';
-            if (hasImg) {
-                html += '<img src="' + escapeHtml(firstImg) + '" alt="商品图片" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentElement.innerHTML=\'<div class=\\\'no-img\\\'>图片加载失败</div>\'">';
-                html += '<div class="zoom">🔍</div>';
-            } else {
-                html += '<div class="no-img">暂无图片<br>点击查看链接</div>';
-            }
-            html += '</div>';
-            html += '<div class="info">';
-            html += '<div class="label">类目路径</div>';
-            html += '<div class="value">' + escapeHtml(item.leafCategory || '-') + '</div>';
-            html += '<div class="label">款式编号</div>';
-            html += '<div class="value"><span style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">' + escapeHtml(item.industryId || '-') + '</span>';
-            if (item.industryId) {
-                html += '<button class="copy-btn" onclick="event.stopPropagation();copyText(\'' + escapeHtml(item.industryId) + '\',this)">复制</button>';
-            }
-            html += '</div>';
-            html += '<div class="label">区域</div>';
-            html += '<div class="value">' + escapeHtml(regionText(item.region)) + '</div>';
-            html += '<div class="label">更新时间</div>';
-            html += '<div class="value time-value">' + escapeHtml(item.updateTime || '-') + '</div>';
-            html += '</div>';
-            html += '</div>';
-        });
-        html += '</div>';
-    });
-
-    container.innerHTML = html;
-}
-
-function regionText(r) {
-    if (!r) return '-';
-    var map = { '欧区': '🇪🇺 欧区', '美区': '🇺🇸 美区', '拉美': '🌎 拉美' };
-    return map[r] || r;
-}
-
-function openModal(idx) {
-    currentIdx = idx;
-    showModal();
-}
-
-function showModal() {
-    var item = allData[currentIdx];
-    if (!item) return;
-    var imgWrap = document.getElementById('modal-img-wrap');
-    var info = document.getElementById('modal-info');
-
-    if (item.images && item.images.length > 0) {
-        var img = document.createElement('img');
-        img.src = item.images[0];
-        img.referrerPolicy = 'no-referrer';
-        img.alt = '商品大图';
-        imgWrap.innerHTML = '';
-        imgWrap.appendChild(img);
-    } else {
-        imgWrap.innerHTML = '<div style="color:#666;padding:60px;">暂无图片</div>';
-    }
-
-    var infoHtml = '<div><b>类目路径：</b>' + escapeHtml(item.leafCategory || '-') + '</div>';
-    infoHtml += '<div class="row"><b>款式编号：</b>' + escapeHtml(item.industryId || '-');
-    if (item.industryId) {
-        infoHtml += ' <button class="copy-btn" onclick="copyText(\'' + escapeHtml(item.industryId) + '\',this)">复制编号</button>';
-    }
-    infoHtml += '</div>';
-    infoHtml += '<div><b>区域：</b>' + escapeHtml(regionText(item.region)) + '</div>';
-    infoHtml += '<div><b>更新时间：</b>' + escapeHtml(item.updateTime || '-') + '</div>';
-    if (item.link) {
-        infoHtml += '<div><a href="' + escapeHtml(item.link) + '" target="_blank" class="search-link">🔗 查看商品链接</a></div>';
-    }
-    infoHtml += '<div class="modal-count">' + (currentIdx + 1) + ' / ' + allData.length + '</div>';
-
-    info.innerHTML = infoHtml;
-    document.getElementById('modal').classList.add('show');
-}
-
-function closeModal() {
-    document.getElementById('modal').classList.remove('show');
-}
-
-function navModal(dir) {
-    currentIdx += dir;
-    if (currentIdx < 0) currentIdx = allData.length - 1;
-    if (currentIdx >= allData.length) currentIdx = 0;
-    showModal();
-}
-
-document.getElementById('tabs').addEventListener('click', function(e) {
-    if (e.target.classList.contains('tab')) {
-        switchTab(e.target.dataset.tab);
-    }
-});
-document.getElementById('modal').addEventListener('click', function(e) {
-    if (e.target.id === 'modal') closeModal();
-});
-document.addEventListener('keydown', function(e) {
-    if (!document.getElementById('modal').classList.contains('show')) return;
-    if (e.key === 'Escape') closeModal();
-    if (e.key === 'ArrowLeft') navModal(-1);
-    if (e.key === 'ArrowRight') navModal(1);
-});
-
-loadData();
-</script>
+<footer class="site-footer">
+  <p>本网页所有功能只提供建议，不负任何法律责任，所有资源来源于互联网。</p>
+  <p>如有功能更新需求请联系 <span class="footer-accent">麦杞岐（maggie.xie）</span></p>
+</footer>
 </body>
 </html>
