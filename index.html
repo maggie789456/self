@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="referrer" content="no-referrer">
-<meta name="description" content="男装爆款机会商品集合页：按男士运动装和功能夹克下的保暖夹克、紧身运动夹克两个推荐类目分区，支持一键复制类目路径与跳转商品页。仅供参考，请勿侵权。">
+<meta name="description" content="男装爆款机会商品集合页：按「男士棉质轻型夹克」推荐类目统一归集，支持一键复制类目路径与跳转商品页。仅供参考，请勿侵权。">
 <meta name="theme-color" content="#111827">
 <meta property="og:type" content="website">
 <meta property="og:title" content="男装爆款机会商品集合页">
-<meta property="og:description" content="男士运动装和功能保暖夹克 / 紧身运动夹克 · 支持复制类目路径与跳转商品页。仅供参考，请勿侵权。">
+<meta property="og:description" content="男士棉质轻型夹克 · 支持复制类目路径与跳转商品页。仅供参考，请勿侵权。">
 <meta name="twitter:card" content="summary">
-<title>男装爆款机会商品集合页 | 男士运动装和功能夹克</title>
+<title>男装爆款机会商品集合页 | 男士棉质轻型夹克</title>
 <style>
 :root{--bg:#f5f6f8;--line:#e6e8ec;--text:#1b1f27;--sub:#6b7280;--red:#dc2626;--blue:#1d4ed8;--topH:80px;}
 *{box-sizing:border-box;}
@@ -33,6 +33,11 @@ a{color:inherit;text-decoration:none;}
   box-shadow:0 10px 24px rgba(17,24,39,.32);}
 .tab.hot.on{background:linear-gradient(96deg,#b91c1c,#f43f5e);border-color:#b91c1c;}
 .tab.hot{border-color:#fecaca;color:#b91c1c;background:#fff5f5;}
+.tab .tcnt{display:inline-block;margin-left:9px;font-size:13px;font-weight:800;border-radius:12px;
+  padding:2px 9px;background:#f1f5f9;color:#0f172a;vertical-align:2px;}
+.tab.on .tcnt{background:rgba(255,255,255,.24);color:#fff;}
+.tab.hot .tcnt{background:#fee2e2;color:#b91c1c;}
+.tab.hot.on .tcnt{background:rgba(255,255,255,.26);color:#fff;}
 
 .layout{max-width:1720px;margin:0 auto;display:flex;align-items:flex-start;padding:0 20px 80px;gap:20px;}
 .side{width:216px;flex:0 0 216px;position:sticky;top:calc(var(--topH) + 16px);
@@ -183,7 +188,7 @@ a{color:inherit;text-decoration:none;}
 <div id="toast"></div>
 
 <script>
-const D = {"cats":["夹克外套"],"regions":["欧区","全球","美区"],"paths":[["男士运动装和功能保暖夹克","服装、鞋靴和珠宝饰品 > 男士时尚 > 男装 > 男士外套 > 男士运动装和功能夹克 > 男士运动装和功能保暖夹克"],["男士紧身运动装和功能夹克","服装、鞋靴和珠宝饰品 > 男士时尚 > 男装 > 男士外套 > 男士运动装和功能夹克 > 男士紧身运动装和功能夹克"]],"imgs":["https://img.kwcdn.com/product/fancy/14400c41-6e2a-47e6-898d-ff119904068a.jpg","https://img.kwcdn.com/product/fancy/d179ef7b-d8ea-4aaf-8291-a61ad46a2dce.jpg","https://img.kwcdn.com/product/fancy/44b518c1-cbd2-4243-8a8a-7dbd4e1e7567.jpg","https://img.kwcdn.com/product/fancy/ba224665-19cf-4cfd-821d-1e354e8f977f.jpg","https://img.kwcdn.com/product/fancy/1617945f-1794-40fa-8615-3f87b62ef9f3.jpg","https://img.kwcdn.com/product/fancy/ab68986b-66af-4143-9ada-cb64cbca3129.jpg","https://img.kwcdn.com/product/fancy/148d660a-eb89-4c59-9fc3-3b623f907286.jpg","https://img.kwcdn.com/product/open/80e3473103544a3e848a12d3b5894fab-goods.jpeg","https://img.kwcdn.com/product/fancy/e9aeb55f-1bc5-4daf-8442-f6cd5797b927.jpg","https://img.kwcdn.com/product/fancy/b80a30e0-9f40-4317-8971-434f1a9c0d7c.jpg","https://img.kwcdn.com/product/fancy/cd67b0b0-0f8f-4d41-a36e-f842f4dd313a.jpg","https://img.kwcdn.com/product/fancy/9d30b510-e350-47a7-b041-dc8a70e48330.jpg","https://img.kwcdn.com/product/fancy/86979713-e6e7-4711-9f23-da53adc97b09.jpg","https://img.kwcdn.com/product/fancy/66f23154-8d53-4a29-bf6d-fcc261763c8d.jpg","https://img.kwcdn.com/product/fancy/862cdd16-5fc5-482c-b20a-bc4e483047f9.jpg","https://img.kwcdn.com/product/fancy/d7ea06ae-0507-4435-a744-d21ede2bc060.jpg","https://img.kwcdn.com/product/fancy/f21eae06-c6f3-470b-a1d2-8d549e0c4835.jpg","https://img.kwcdn.com/product/fancy/e1c64787-7a91-49e0-9ef1-7ee0e814aafd.jpg","https://img.kwcdn.com/product/fancy/1be721e1-5983-4121-b904-cf2bc9c57469.jpg","https://img.kwcdn.com/product/fancy/6c1998b3-3b6e-4954-b187-79293db1097a.jpg","https://img.kwcdn.com/product/fancy/fee3e2f9-682d-436b-9f81-9bcd77ff4bf8.jpg","https://img.kwcdn.com/product/fancy/b40b20f2-d634-47a7-aac0-22d554fd19ea.jpg","https://img.kwcdn.com/product/fancy/143da131-f57a-4499-a6e3-7deabc0cd087.jpg","https://img.kwcdn.com/product/fancy/b1e5d45b-9365-4f21-afca-e6eee884c180.jpg","https://img.kwcdn.com/product/fancy/12dfa24d-a16e-4434-bbe3-4cd6dbe28bb3.jpg","https://img.kwcdn.com/product/fancy/1f13cd17-75f8-4408-a275-061b3af39283.jpg","https://img.kwcdn.com/product/fancy/040d024f-d248-4e00-855a-af4724bbabd7.jpg","https://img.kwcdn.com/product/fancy/ec7c5ebc-be7e-41a2-af0c-fbe045ea7308.jpg","https://img.kwcdn.com/product/open/52b28687bfd148dab5d6f2760402e652-goods.jpeg","https://img.kwcdn.com/product/fancy/c58230af-f03b-4dad-9822-8f1c3c23d00e.jpg","https://img.kwcdn.com/product/open/dfdfd41973a140729669d2509301612e-goods.jpeg","https://img.kwcdn.com/product/fancy/6a056d04-2771-4327-ad5d-5e5acb0bd0d4.jpg","https://img.kwcdn.com/product/fancy/8e6bcaf0-7ba4-464a-bba5-49b395dcc123.jpg","https://img.kwcdn.com/product/fancy/19e54b9d-5e9b-4c7d-a0fd-a5c9ddfd0816.jpg","https://img.kwcdn.com/product/fancy/f557497f-561b-41da-a685-400598c4dc00.jpg","https://img.kwcdn.com/product/fancy/e96fc351-d100-4a1b-a64a-967ba79b127a.jpg","https://img.kwcdn.com/product/fancy/6245bfe6-8b06-4c6a-94d8-12671d6b24d5.jpg","https://img.kwcdn.com/product/algo_check/auto/605ce126980fef940f39368a7e83742d1786277953496.jpg","https://img.kwcdn.com/product/fancy/98d50c20-eba7-479c-8cce-bc5499f3ceef.jpg"],"items":[[0,1,0,0,"607337079249225"],[0,1,0,1,"601100303673052"],[0,1,0,2,"607053812728275"],[0,1,0,3,"601102772062414"],[0,1,0,4,"606698739741500"],[0,1,0,5,"601099544712627"],[0,1,0,6,"605718363082176"],[0,1,0,7,"601103403015632"],[0,1,0,8,"606862082733610"],[0,1,0,9,"607520152222786"],[0,1,0,10,"601103950189752"],[0,1,1,11,"605865952264356"],[0,0,0,1,"601100303673052"],[0,0,0,0,"607337079249225"],[0,0,0,7,"601103403015632"],[0,0,0,12,"607397410107073"],[0,0,0,13,"606943552872687"],[0,0,0,4,"606698739741500"],[0,0,0,14,"601103811448714"],[0,0,0,3,"601102772062414"],[0,0,0,15,"601099671947781"],[0,0,0,16,"607373049588558"],[0,0,0,17,"605986614036384"],[0,0,0,18,"601099679529373"],[0,0,0,19,"606957779966734"],[0,0,0,20,"607212357393470"],[0,0,0,8,"606862082733610"],[0,0,0,21,"607356674998317"],[0,0,0,6,"605718363082176"],[0,0,0,22,"607359896260096"],[0,0,0,23,"606897247723909"],[0,0,0,24,"601103311039965"],[0,0,0,25,"606990126410162"],[0,0,0,26,"607538808471182"],[0,0,0,27,"601101948741528"],[0,0,0,10,"601103950189752"],[0,0,1,28,"601102052958200"],[0,2,0,29,"601103439907041"],[0,2,0,21,"607356674998317"],[0,2,0,30,"607387645764192"],[0,2,0,31,"601099633866958"],[0,2,0,4,"606698739741500"],[0,2,1,32,"606156919533999"],[0,2,0,33,"607097030832458"],[0,2,0,9,"607520152222786"],[0,2,0,34,"606018205506922"],[0,2,0,35,"607642021920645"],[0,2,0,36,"601103290667481"],[0,2,0,37,"607180178692710"],[0,2,0,38,"601104220228480"]],"tri":["606698739741500"]};
+const D = {"cats": ["夹克外套"], "regions": ["欧区", "全球", "美区"], "paths": [["男士棉质轻型夹克", "服装、鞋靴和珠宝饰品 > 男士时尚 > 男装 > 男士外套 > 男士轻型夹克 > 男士棉质轻型夹克"]], "imgs": ["https://img.kwcdn.com/product/open/8363adfb284b4b649f8e66f6c4a50ef2-goods.jpeg", "https://img.kwcdn.com/product/fancy/66f56a1e-9946-4db9-9554-a4b66b7460f6.jpg", "https://img.kwcdn.com/product/fancy/260a7589-5228-4996-8885-e848f9dd8e40.jpg", "https://img.kwcdn.com/product/fancy/013b0e89-4ccc-4546-96b6-ac50305fd050.jpg", "https://img.kwcdn.com/product/fancy/c60b987c-9c11-44a2-af4b-6bdecdab195a.jpg", "https://img.kwcdn.com/product/fancy/508cee1a-c624-4b31-9dbe-201d9eb09b0c.jpg", "https://img.kwcdn.com/product/fancy/20fbb8f7-0636-4cd7-8340-fce9cf3f8b90.jpg", "https://img.kwcdn.com/product/fancy/d3289a58-c084-478f-a394-ca9b0a503ce5.jpg", "https://img.kwcdn.com/product/fancy/715241f2-47aa-4a1d-9675-f601e5a1f52d.jpg", "https://img.kwcdn.com/product/fancy/37159f0d-aa0b-4590-a5f4-cfe7e3e03b70.jpg", "https://img.kwcdn.com/product/fancy/111f4fae-b5ca-49ba-9420-6287453cb5a9.jpg", "https://img.kwcdn.com/product/fancy/7e02e4cd-80f5-473a-88d7-6f568b9841b2.jpg", "https://img.kwcdn.com/product/fancy/114a9bde-cc29-475c-948f-4d9b22074416.jpg", "https://img.kwcdn.com/product/fancy/553f8a8b-94e9-4800-9b5b-c8d685feede6.jpg", "https://img.kwcdn.com/product/fancy/dd18207c-09ba-4b7e-934d-ef0b0d276035.jpg", "https://img.kwcdn.com/product/fancy/6d952283-4acb-4cb0-8e7d-ca0aa781864f.jpg", "https://img.kwcdn.com/product/fancy/6ae38f50-da99-4666-8e2f-775955b4b994.jpg", "https://img.kwcdn.com/product/fancy/19f1a1fb-9d85-4471-831c-89c3d8c4233c.jpg", "https://img.kwcdn.com/product/fancy/d542b691-4cfa-46a4-8e96-e30f8f0f8e69.jpg", "https://img.kwcdn.com/product/fancy/d351fe73-23b9-4575-8523-f3461b017e1f.jpg", "https://img.kwcdn.com/product/fancy/060bdc53-3409-4965-b0c2-c277683a4452.jpg", "https://img.kwcdn.com/product/fancy/a670396c-4306-4284-8032-f3a995ea1c2f.jpg", "https://img.kwcdn.com/product/fancy/d283dc6c-8a02-4f48-9ba2-1f241ea6cbe1.jpg", "https://img.kwcdn.com/product/fancy/a2a6abf1-75e3-40d6-905f-f089cf16a251.jpg", "https://img.kwcdn.com/product/fancy/abd8cff5-8309-4716-9b3f-78949ee5c157.jpg", "https://img.kwcdn.com/product/fancy/2b378bbe-7a45-4bcb-a00f-c258493e8b83.jpg", "https://img.kwcdn.com/product/fancy/4cbdfe59-f096-4c35-8036-fadfe8b3faef.jpg", "https://img.kwcdn.com/product/fancy/28903f3e-fe56-492a-b453-bfa37cf26ebd.jpg", "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/bf787585aace9d25a11ea73c191695ff.jpg", "https://img.kwcdn.com/product/fancy/ae03d33d-d9a4-4ec3-8d3b-e19bf18ddc02.jpg", "https://img.kwcdn.com/product/fancy/18eb12b4-3240-415e-9d45-ad0184f29d00.jpg", "https://img.kwcdn.com/product/fancy/5e234f34-8861-4642-8eea-f15e2a44d38c.jpg", "https://img.kwcdn.com/product/fancy/5ef9b180-f8b2-4b54-872a-4a616b767e61.jpg", "https://img.kwcdn.com/product/fancy/6245bfe6-8b06-4c6a-94d8-12671d6b24d5.jpg", "https://img.kwcdn.com/product/fancy/b517e93f-2545-4fff-af7c-78831caee0c3.jpg", "https://img.kwcdn.com/product/fancy/19e7785b-49c4-4d19-96a3-c6d59ca01ed8.jpg", "https://img.kwcdn.com/product/fancy/3e81b728-5d19-4f0a-8b57-8555be45a862.jpg", "https://img.kwcdn.com/product/fancy/a1cf6315-7075-468b-b1e5-ee992da1ecfe.jpg", "https://img.kwcdn.com/product/fancy/c58230af-f03b-4dad-9822-8f1c3c23d00e.jpg", "https://img.kwcdn.com/product/fancy/cbfad395-e63c-435e-91dd-f2475c1b1001.jpg", "https://img.kwcdn.com/product/fancy/19e54b9d-5e9b-4c7d-a0fd-a5c9ddfd0816.jpg", "https://img.kwcdn.com/product/fancy/b1cd08bb-4e97-4994-ba94-b156ac1f950d.jpg", "https://img.kwcdn.com/product/fancy/2c9d06c5-a87d-4d0b-b3cb-999fe7f21fcf.jpg", "https://img.kwcdn.com/product/fancy/89998eba-d104-4bae-9ded-349991ad875a.jpg", "https://img.kwcdn.com/product/fancy/bc0b1632-8bec-470b-b623-9249719887ec.jpg", "https://img.kwcdn.com/product/fancy/b35505b4-8a5b-44e4-8615-5c7637dd13c4.jpg", "https://img.kwcdn.com/product/open/4dfa05b797104358acaceed23703919d-goods.jpeg", "https://img.kwcdn.com/product/fancy/2ffa9faf-2e71-4c73-b5db-2beba94d3095.jpg", "https://img.kwcdn.com/product/fancy/b62a3303-82a4-4bb4-bb77-ab21eaf494fe.jpg", "https://img.kwcdn.com/product/fancy/b9400d96-72f3-4d59-8b40-89dfdf7f9b17.jpg", "https://img.kwcdn.com/product/fancy/c33439b6-93f3-428a-9aa7-3e4c5ec6f003.jpg", "https://img.kwcdn.com/product/fancy/37cb85cd-5f10-472d-990a-3c8a707efce2.jpg", "https://img.kwcdn.com/product/open/79658efd9b3b4491a7f92dacb3ae6474-goods.jpeg", "https://img.kwcdn.com/product/fancy/fefcebc1-af9b-429a-87c4-fff7cddd7cfe.jpg", "https://img.kwcdn.com/product/fancy/eec9c446-61c6-43fc-8b90-665c879da113.jpg", "https://img.kwcdn.com/product/fancy/b1df798d-0923-45a7-8966-45a112172b3b.jpg", "https://img.kwcdn.com/product/fancy/04c7f4bc-c31f-4bc1-8e44-33d022b0badc.jpg", "https://img.kwcdn.com/product/fancy/5e076348-2238-429a-a53d-62e5cc25f965.jpg", "https://img.kwcdn.com/product/open/5b76379067304c179ce320c0edc1ffc0-goods.jpeg", "https://img.kwcdn.com/product/fancy/f7a3dfc7-6554-4c73-99d4-d785e91b32ea.jpg", "https://img.kwcdn.com/product/fancy/7cecb221-a0c8-4fc6-8fc2-ab1db6a8f12a.jpg", "https://img.kwcdn.com/product/algo_check/auto/4a12ddc1dee83ce59a5da2a2ba9cb362_1789549514446.jpg", "https://img.kwcdn.com/product/fancy/9c6bcf8a-3851-4f37-a89b-ba4b20e39a4c.jpg", "https://img.kwcdn.com/product/fancy/0311fc4a-ab8b-46b2-b12e-30e360973eb5.jpg", "https://img.kwcdn.com/product/fancy/000e3307-f5c3-4ae5-96c5-67b53c8fff42.jpg", "https://img.kwcdn.com/product/fancy/ef594b60-a129-42ee-a04b-4dfac5e9f717.jpg", "https://img.kwcdn.com/product/fancy/ba224665-19cf-4cfd-821d-1e354e8f977f.jpg", "https://img.kwcdn.com/product/fancy/1986d680-6901-4774-96af-43e37c224ab0.jpg", "https://img.kwcdn.com/product/fancy/f64e6fb1-0843-4e14-a18d-0d021196b6fd.jpg", "https://img.kwcdn.com/product/fancy/b1b29909-855a-43ff-948a-90f7ce683ca0.jpg", "https://img.kwcdn.com/product/fancy/f01d422b-54cf-487f-b2a0-e3b6ea4c0d6f.jpg", "https://img.kwcdn.com/product/fancy/5bdd94f2-68a1-4dde-b5dc-e0b0e286414a.jpg", "https://img.kwcdn.com/product/fancy/62aca9b2-bf23-484a-a990-2158a4f469e0.jpg", "https://img.kwcdn.com/product/fancy/e4c21fb4-5353-4116-81e1-1ae847286b40.jpg", "https://img.kwcdn.com/product/fancy/be4b9bb3-69c7-44cf-8f7a-cf613df524c0.jpg", "https://img.kwcdn.com/product/fancy/02ce770e-35c6-4403-9095-4e7c36e767d4.jpg", "https://img.kwcdn.com/product/fancy/ccf50f4e-69a3-474a-b5eb-7dd48ff8d9f7.jpg", "https://img.kwcdn.com/product/fancy/20d2510e-4c53-4508-8345-4ec427a75bf2.jpg", "https://img.kwcdn.com/product/fancy/f8cdabd2-4a3a-487e-a769-654336cdd39c.jpg", "https://img.kwcdn.com/product/fancy/67cbfc2a-2561-44d5-ae6e-23bdd1c3ec70.jpg", "https://img.kwcdn.com/product/fancy/9fb0433f-7665-4b99-b8c4-91e14110efaa.jpg", "https://img.kwcdn.com/product/open/9dc5be4200e643918448c273403c3a0b-goods.jpeg"], "items": [[0, 0, 0, 0, "607354091369538"], [0, 0, 0, 1, "607177762782096"], [0, 0, 0, 2, "601103378564525"], [0, 0, 0, 3, "601100303673052"], [0, 0, 0, 4, "607010930173167"], [0, 0, 0, 5, "601103039710580"], [0, 0, 0, 6, "601104918817639"], [0, 0, 0, 7, "601104362645697"], [0, 0, 0, 8, "601100197546341"], [0, 0, 0, 9, "605638587463592"], [0, 0, 0, 10, "601099659559351"], [0, 0, 0, 11, "607341843993960"], [0, 0, 0, 12, "605621206255610"], [0, 0, 0, 13, "606670252017784"], [0, 0, 0, 14, "601102712497125"], [0, 0, 0, 15, "606363094728432"], [0, 0, 0, 16, "607132397218998"], [0, 0, 0, 17, "605747354141417"], [0, 0, 0, 18, "606469982369051"], [0, 0, 0, 19, "607379458474825"], [0, 0, 0, 20, "607298290290437"], [0, 0, 0, 21, "601103455955871"], [0, 0, 0, 22, "606670654662292"], [0, 0, 0, 23, "607140148291171"], [0, 0, 0, 24, "601100991524629"], [0, 0, 0, 25, "601099869606089"], [0, 0, 0, 26, "606775243826848"], [0, 0, 0, 27, "606946874727915"], [0, 0, 0, 28, "601099514393863"], [0, 0, 0, 29, "607586287979295"], [0, 0, 0, 30, "601100805219756"], [0, 0, 0, 31, "607376908367338"], [0, 0, 0, 32, "601101133540306"], [0, 0, 0, 33, "601103290667481"], [0, 0, 0, 34, "601100911358582"], [0, 0, 0, 35, "601099848352039"], [0, 0, 0, 36, "601102658479467"], [0, 2, 0, 4, "607010930173167"], [0, 2, 0, 37, "606478572301630"], [0, 2, 0, 20, "607298290290437"], [0, 2, 0, 38, "601103439907041"], [0, 2, 0, 39, "607330838086099"], [0, 2, 0, 40, "607097030832458"], [0, 2, 0, 41, "606848795157364"], [0, 2, 0, 42, "607551257157315"], [0, 2, 0, 43, "607301779980292"], [0, 2, 0, 15, "606363094728432"], [0, 2, 0, 44, "605763544144232"], [0, 2, 0, 12, "605621206255610"], [0, 2, 0, 45, "606118617130954"], [0, 2, 0, 46, "606814838054618"], [0, 2, 0, 47, "607516125687031"], [0, 2, 0, 48, "606632570404807"], [0, 2, 0, 49, "607402812359653"], [0, 2, 0, 50, "601105590067138"], [0, 2, 0, 5, "601103039710580"], [0, 2, 0, 51, "607563605183538"], [0, 2, 0, 52, "607168602413978"], [0, 2, 0, 53, "606707262586771"], [0, 2, 0, 54, "601103676962931"], [0, 2, 0, 55, "606115244910894"], [0, 2, 0, 56, "607457573189384"], [0, 2, 0, 57, "606789672271620"], [0, 2, 0, 58, "607530319205311"], [0, 1, 0, 36, "601102658479467"], [0, 1, 0, 1, "607177762782096"], [0, 1, 0, 20, "607298290290437"], [0, 1, 0, 59, "601100685196832"], [0, 1, 0, 15, "606363094728432"], [0, 1, 0, 60, "606104775978127"], [0, 1, 0, 61, "607531158072256"], [0, 1, 0, 62, "601103339614619"], [0, 1, 0, 57, "606789672271620"], [0, 1, 0, 63, "607485389834466"], [0, 1, 0, 19, "607379458474825"], [0, 1, 0, 64, "601102541417900"], [0, 1, 0, 65, "606833158812615"], [0, 1, 0, 66, "601102772062414"], [0, 1, 0, 67, "601099603615647"], [0, 1, 0, 12, "605621206255610"], [0, 1, 0, 48, "606632570404807"], [0, 1, 0, 68, "601101884500030"], [0, 1, 0, 69, "601103580933893"], [0, 1, 0, 70, "601100423181289"], [0, 1, 0, 71, "605838236291282"], [0, 1, 0, 45, "606118617130954"], [0, 1, 0, 72, "601101956132505"], [0, 1, 0, 73, "606575880172120"], [0, 1, 0, 0, "607354091369538"], [0, 1, 0, 32, "601101133540306"], [0, 1, 0, 74, "605566378339568"], [0, 1, 0, 75, "606172774018682"], [0, 1, 0, 76, "606003642904061"], [0, 1, 0, 77, "601102870767710"], [0, 1, 0, 78, "601103677265410"], [0, 1, 0, 79, "605949083375689"], [0, 1, 0, 80, "606822052256813"], [0, 1, 0, 6, "601104918817639"], [0, 1, 0, 81, "607643196315794"]], "tri": ["605621206255610", "606363094728432", "607298290290437"]};
 const CATS = D.cats, REGIONS = D.regions, PATHS = D.paths, IMGS = D.imgs, ITEMS = D.items;
 const TRISET = new Set(D.tri);
 const GOODS = 'https://www.temu.com/goods.html?goods_id=';
@@ -208,14 +213,19 @@ const SECTIONS = [];
 const triObjs = objs.filter(o=>o.tri);
 const hotGroups = CATS.map(c=>({label:c, cls:'s-'+c, icon:CAT_ICON[c], items:triObjs.filter(o=>o.cat===c)}))
                      .filter(g=>g.items.length);
-SECTIONS.push({key:'hot', label:'🔥 大爆品潜力商品', cls:'hot', kind:'hot',
+SECTIONS.push({key:'hot', label:'大爆款潜力商品（三区）', cls:'hot', kind:'hot',
   total:triObjs.length, uniq:new Set(triObjs.map(o=>o.gid)).size, groups:hotGroups});
-CATS.forEach(c=>{
-  const list = objs.filter(o=>o.cat===c);
-  const groups = REGIONS.map(rg=>({label:rg, cls:'s-hot', items:list.filter(o=>o.region===rg)}))
-                        .filter(g=>g.items.length);
-  SECTIONS.push({key:c, label:CAT_ICON[c]+' '+c, cls:c, kind:'cat', cat:c,
-    total:list.length, uniq:uniqN(list), groups:groups});
+const REG_BG = {
+  '欧区':'linear-gradient(115deg,#1d4ed8,#3b82f6 60%,#60a5fa)',
+  '全球':'linear-gradient(115deg,#047857,#10b981 60%,#34d399)',
+  '美区':'linear-gradient(115deg,#6d28d9,#8b5cf6 60%,#a78bfa)'
+};
+REGIONS.forEach(rg=>{
+  const list = objs.filter(o=>o.region===rg);
+  if(!list.length) return;
+  SECTIONS.push({key:rg, label:rg, cls:'rg', kind:'region', region:rg,
+    total:list.length, uniq:uniqN(list), items:list,
+    groups:[{label:list[0].leaf, cls:'s-hot', icon:REG_ICON[rg], items:list}]});
 });
 
 function card(o, badge){
@@ -262,7 +272,7 @@ function renderSection(sec, si){
   if(sec.kind==='hot'){
     const head = `<div class="banner b-hot">
       <div class="ico">🔥</div>
-      <div><h2>大爆品潜力商品</h2><div class="desc">在「欧区 + 全球 + 美区」三个区域均有销售记录的同款商品，按四大类目分组</div></div>
+      <div><h2>大爆款潜力商品（三区）</h2><div class="desc">在「欧区 + 全球 + 美区」三个区域均有销售记录的同款商品</div></div>
       <div class="cnt"><b>${sec.uniq}</b><span>款（共 ${sec.total} 条记录）</span></div></div>`;
     const body = sec.groups.map((g,gi)=>{
       const gidOrder = [...new Set(g.items.map(o=>o.gid))];
@@ -279,6 +289,13 @@ function renderSection(sec, si){
     }).join('');
     return `<section id="sec-${si}" class="sec">${head}${body}</section>`;
   }
+  if(sec.kind==='region'){
+    const head = `<div class="banner" style="background:${REG_BG[sec.region]||'linear-gradient(115deg,#334155,#64748b)'}">
+      <div class="ico">${REG_ICON[sec.region]||'📍'}</div>
+      <div><h2>${esc(sec.region)}</h2><div class="desc">推荐类目统一为「男士棉质轻型夹克」 · 类目路径一键复制</div></div>
+      <div class="cnt"><b>${sec.uniq}</b><span>款（共 ${sec.total} 条记录）</span></div></div>`;
+    return `<section id="sec-${si}" class="sec">${head}${leafBlock(sec.items)}</section>`;
+  }
   const body = sec.groups.map((g,gi)=>{
     const groups = new Map();
     g.items.forEach(o=>{ const k=o.path||o.leaf; if(!groups.has(k)) groups.set(k,[]); groups.get(k).push(o); });
@@ -293,7 +310,7 @@ function renderSection(sec, si){
   return `<section id="sec-${si}" class="sec">
     <div class="banner b-${esc(sec.cat)}">
       <div class="ico">${CAT_ICON[sec.cat]}</div>
-      <div><h2>${esc(sec.cat)}</h2><div class="desc">按区域分区 · 按【叶子类目名称】分组 · 类目路径一键复制</div></div>
+      <div><h2>${esc(sec.cat)}</h2><div class="desc">推荐类目统一为「男士棉质轻型夹克」 · 按区域分区 · 类目路径一键复制</div></div>
       <div class="cnt"><b>${sec.total}</b><span>条记录 / ${sec.uniq} 款商品</span></div>
     </div>${body}</section>`;
 }
@@ -306,8 +323,11 @@ const sideTitle = document.getElementById('side-title');
 const sideEl = document.getElementById('sidenav');
 let activeSec = 0;
 
-tabsEl.innerHTML = SECTIONS.map((s,i)=>
-  `<button class="tab ${s.cls==='hot'?'hot':''}" data-i="${i}">${esc(s.label)}</button>`).join('');
+tabsEl.innerHTML = SECTIONS.map((s,i)=>{
+  const n = s.uniq + '款';
+  const icon = s.kind==='hot' ? '🔥 ' : (REG_ICON[s.region]||'') + ' ';
+  return `<button class="tab ${s.kind==='hot'?'hot':''}" data-i="${i}">${icon}${esc(s.label)}<span class="tcnt">${n}</span></button>`;
+}).join('');
 tabsEl.addEventListener('click', e=>{
   const b = e.target.closest('.tab'); if(!b) return;
   const i = +b.dataset.i;
@@ -322,11 +342,11 @@ function setActive(i){
 }
 function buildSide(i){
   const sec = SECTIONS[i];
-  sideTitle.textContent = (sec.kind==='hot' ? '大爆品潜力商品 · 按类目' : sec.cat + ' · 按区域');
+  sideTitle.textContent = (sec.kind==='hot' ? '大爆品潜力商品 · 按类目' : sec.region + ' · 叶子类目');
   sideEl.innerHTML = sec.groups.map((g,gi)=>{
     const n = sec.kind==='hot' ? new Set(g.items.map(o=>o.gid)).size : g.items.length;
     const unit = sec.kind==='hot' ? '款' : '条';
-    const icon = sec.kind==='hot' ? (g.icon||'') : (REG_ICON[g.label]||'📍');
+    const icon = g.icon || (sec.kind==='hot' ? '' : (REG_ICON[g.label]||'📍'));
     return `<button data-sub="sub-${i}-${gi}" data-g="${gi}">
       <span>${icon} ${esc(g.label)}</span><span class="n">${n}${unit}</span></button>`;
   }).join('');
